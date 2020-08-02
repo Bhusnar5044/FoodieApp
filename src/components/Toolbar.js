@@ -1,9 +1,8 @@
 
-import React, {useState,useContext} from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
-// import SearchBar from './Sidebar/LocationSearch/SearchBar';
 import SearchBar from './Sidebar/LocationSearch/SearchBar';
-import UserContext from './UserContext'
+import {connect} from 'react-redux';
 
 function Toolbar(props){
   const width=380;
@@ -11,8 +10,6 @@ function Toolbar(props){
   const [xPosition, setX] = useState(-width);
   const [location, setLocation] = useState("Select Location");
   const [flag, setFlag] = useState(false);
-  const user = useContext(UserContext)
-
 
   const toggleMenu = () => {
     if (xPosition < 0) {
@@ -24,12 +21,13 @@ function Toolbar(props){
 
   const handleChange = (flag1) => {
     props.onHandleChange(flag1);
-    // setLocation(name); 
+    if(flag){
+      console.log("clicked",props.user.locationTitle);
+    }
     setFlag(flag1);
   }
 
   React.useEffect(() => {
-    setLocation(user.locationTitle);
     setX(0);
     if(flag){
       setX(-width);
@@ -46,7 +44,7 @@ function Toolbar(props){
       <a class="active" href="/">The Logo</a>
      
       <a onClick={() => toggleMenu()} >
-        {location} <i class="fa fa-map-marker" aria-hidden="true"></i></a>
+        {props.user.locationTitle}, {props.user.country} <i class="fa fa-map-marker" aria-hidden="true"></i></a>
 
       <div class="nav_item">
         <a href="/"><i class="fa fa-search"></i>Search</a>
@@ -70,7 +68,22 @@ function Toolbar(props){
   );
 }
 
-export default Toolbar;
+const mapStateToProps = (state) => {
+  return{
+      user: state.user,
+  };
+};
+
+// const mapDispatchToProps = (dispatch) => {
+//   return{
+//     setName: (entityId,entityType,title,country) =>{
+//       dispatch(setName(entityId,entityType,title,country));
+//     }
+//   };
+// };
+
+export default connect(mapStateToProps)(Toolbar);
+
 
 
 const Nav = styled.div`

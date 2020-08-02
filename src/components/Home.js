@@ -1,25 +1,24 @@
-import React, { Component,useState,useEffect,useContext } from 'react';
+import React, { Component,useState,useEffect } from 'react';
 import Toolbar from './Toolbar'
-import FoodCard from './Foodcards'
+import FoodCard from './FoodCard/Foodcards'
 import FilterSidebar from './Sidebar/FilterSidebar/FilterSideBar'
 import styled from "styled-components";
 import Axios from "axios";
+import {connect} from 'react-redux';
 
-import UserContext from './UserContext'
-
-
-const Home = () =>{
+const Home = (props) =>{
   const [query, setQuery] = useState("Top");
   const [rdata, setRdata] = useState([]);
   const [alert, setAlert] = useState("");
-  const [entityId,setEntityId]=useState();
-  const [entityType,setEntityType]=useState();
+  const [flag,setFlag]=useState(false);
+  
+  // const [entityType,setEntityType]=useState();
 
   const headers = {
     'Content-Type': 'application/json',
     'user-key': '0997dc3e6fb7b32390fe637998593e5b',
   }
-  const Zurl=`https://developers.zomato.com/api/v2.1/search?entity_id=${entityId}&entity_type=${entityType}&q=${query}&sort=rating&order=asc`;
+  const Zurl=`https://developers.zomato.com/api/v2.1/search?entity_id=${props.user.entityId}&entity_type=${props.user.entityType}&q=${query}&sort=rating&order=asc`;
 
   const getData = () => {
     if (query !== "") {
@@ -41,15 +40,15 @@ const Home = () =>{
   };
 
   const onChange = e => setQuery(e.target.value);
-  const user = useContext(UserContext);
 
-  const HandleChange=(locId,entype)=>{
-    setEntityId(user.entityId);
-    setEntityType(user.entityType);
-    getData();
+  const HandleChange=(flag)=>{
+    setFlag(flag)
   }
   useEffect(()=>{
-    
+    if(flag){
+      getData();
+    }
+    setFlag(false)
   });
   
   return (
@@ -72,7 +71,22 @@ const Home = () =>{
   );
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+  return{
+      user: state.user,
+  };
+};
+
+// const mapDispatchToProps = (dispatch) => {
+//   return{
+//     setName: (name) =>{
+//       dispatch(setName(name));
+//     }
+//   };
+// };
+
+export default connect(mapStateToProps)(Home);
+
 
 const Main = styled.div`
 

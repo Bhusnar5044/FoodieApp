@@ -1,9 +1,8 @@
 
-import React, {createContext,useState,useContext} from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import Locations from './Locations';
 import Axios from "axios";
-import UserContext from '../../UserContext'
 
 function SearchBar(props) {
   const [query, setQuery] = useState("");
@@ -12,8 +11,6 @@ function SearchBar(props) {
   const [entity_Type, setEntityType] = useState("City");
   const [location_Title, setLocationTitle] = useState("Select Location");
   const [alert, setAlert] = useState("");
-  const user = useContext(UserContext);
-
 
   const headers = {
     'Content-Type': 'application/json',
@@ -21,20 +18,25 @@ function SearchBar(props) {
   }
   const Zurl=`https://developers.zomato.com/api/v2.1/locations?query=${query}`;
 
-  const getData = async () => {
+  const getData = () => {
     if (query !== "") {
-      const result = await Axios.get(Zurl,{headers:headers});
-      if (result.data.results_found==0) {
+      Axios.get(Zurl,{headers:headers})
+      .then(res => {
+        const result = res.data;
+        if (result.results_found==0) {
         return setAlert("No food with such name");
       }
+      // const result = await Axios.get(Zurl,{headers:headers});
+      // if (result.data.results_found==0) {
+      //   return setAlert("No food with such name");
+      // }
       console.log(result);
-      setLocations(result.data.location_suggestions);
+      setLocations(result.location_suggestions);
       setQuery("");
       setAlert("");
-    } else {
-      setAlert("Please fill the form");
-    }
-  };
+    });
+  }
+}
 
   const onChange = e => {
     // console.log(user.entityId)
@@ -48,12 +50,7 @@ function SearchBar(props) {
   };
 
   const handleClick = (flag) => {
-    if (flag){
-        console.log(user);
-    }
-    else{
-      console.log("not get");
-    }  
+      props.onGetLoc(flag);
   }
 
 return (

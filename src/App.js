@@ -1,14 +1,16 @@
-import React, { Component,useState,useEffect } from 'react';
-import './App.css';
+import React, { Component} from 'react';
 import Home from './components/Home';
-import SearchBar from './components/Sidebar/LocationSearch/SearchBar';
-function App() {
-  return (
-    <div className="App">
-      {/* <Home/> */}
-      <SearchBar/>
-      </div>
-  );
+
+class App extends Component {
+  render(){
+    return (
+      <div className="App">
+        <Home/>
+        {/* <SearchBar/> */}
+        {/* {this.props.user.entityId} */}
+        </div>
+    );
+  }
 }
 
 export default App;
