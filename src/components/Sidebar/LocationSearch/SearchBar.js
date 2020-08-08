@@ -26,10 +26,6 @@ function SearchBar(props) {
         if (result.results_found==0) {
         return setAlert("No food with such name");
       }
-      // const result = await Axios.get(Zurl,{headers:headers});
-      // if (result.data.results_found==0) {
-      //   return setAlert("No food with such name");
-      // }
       console.log(result);
       setLocations(result.location_suggestions);
       setQuery("");

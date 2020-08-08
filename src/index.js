@@ -4,15 +4,20 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
-import {Provider} from 'react-redux';
-import store from './store';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+// import '../node_modules/bootstrap/dist/js/bootstrap.min.js'
+import { BrowserRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from './redux/store';
 
 ReactDOM.render(
-  <Provider store={store}>
-  <React.StrictMode>
+ <React.StrictMode>
+  <Router>
+    <Provider store={store}>
     <App />
-  </React.StrictMode>
-  </Provider>,
+    </Provider>
+    </Router>
+  </React.StrictMode>,
   document.getElementById('root')
 );
 

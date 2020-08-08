@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "UserCart.module.scss"
+    ],
+    "names": [],
+    "file": "UserCart.module.css"
+}

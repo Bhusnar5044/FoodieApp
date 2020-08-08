@@ -1,0 +1,82 @@
+.main_container {
+  width: 100%;
+  position: relative;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #ff5e5b;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: fixed;
+  top: 0;
+}
+
+.logo {
+  cursor: pointer;
+  width: 70px;
+  height: 60px;
+  margin: 0px 0px;
+  color: black;
+  margin: 0px 5px;
+  border-radius: 5px;
+}
+
+.logo1 {
+  width: 75%;
+  margin: 0px 10px;
+  color: black;
+}
+
+.tagline {
+  color: whitesmoke;
+  font-style: italic;
+  font-size: 12px;
+  margin: 3px 12px;
+}
+
+.Navigation_list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  width: 26%;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  cursor: pointer;
+}
+
+li :hover {
+  color: whitesmoke;
+  -webkit-transition: all 0.3s linear !important;
+  transition: all 0.3s linear !important;
+}
+
+.handleLogo {
+  width: 75%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.trans {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.activelink {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #1b1464 !important;
+  border-radius: 5px;
+  padding: 4px;
+}
+/*# sourceMappingURL=Navbar.module.css.map */

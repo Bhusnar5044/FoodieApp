@@ -1,0 +1,54 @@
+.main{
+  margin-top: 60px !important;
+}
+
+.OfferSlider {
+
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    top: 100px;
+    height: 300px;
+    width: 100%;
+    background-color: #676a79;
+  }
+  
+  .foodCards {
+    width: 80%;
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+.span1 a {
+    font-size: 1.1rem;
+    color: black;
+    text-decoration: none;
+    margin: 1rem 1rem 1rem 0;
+  }
+  
+.span1{
+    margin-left: 10px;
+    width: 500px;
+    display: inline-block;
+  }
+  .filterhead span {
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+    color: black;
+    margin: 1rem 3rem;
+  }
+
+  .toggle-menu {
+    top: 10px;
+    margin: 0 10px;
+    height: 35px;
+    border-radius: 10rem;
+    width: 35px;
+    outline: none;
+    z-index: 1;
+    background-color: rgba(64, 194, 133, 0.693);
+    border-color: rgba(64, 194, 133, 0.693);
+}

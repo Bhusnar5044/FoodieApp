@@ -18,7 +18,7 @@ class Locations extends React.Component {
   // const user={entity_id, entity_type, title}
   handleClick = () =>{
     this.props.onhandleClick(true);
-    this.props.setChange();
+    this.props.setChange(this.state);
   }
   render() {
    return (
@@ -40,8 +40,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    setChange: () =>{
-      dispatch(setChange(3,"city","Mumbai","India"));
+    setChange: (state) =>{
+      dispatch(setChange(state));
     }
   };
 };
