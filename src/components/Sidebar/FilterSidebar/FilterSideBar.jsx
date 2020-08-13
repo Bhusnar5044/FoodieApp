@@ -4,14 +4,33 @@ import React, { useState,useEffect } from 'react'
 import { connect } from 'react-redux'
 import { fetchCuisines } from '../../../redux'
 
-function FilterSideBar ({ userData, fetchCuisines }) {
-    useEffect(() => {
-      const url =`https://developers.zomato.com/api/v2.1/cuisines?city_id=${userData.entityId}`;
-      fetchCuisines(url)
-      
-    }, [])
-  	const [search,setSearch] =useState("");
+function FilterSideBar ({ userData, fetchCuisines,onFilters }) {
+  const [search,setSearch] =useState("");
+  const [filterCheckBoxes,setFilterCheckBoxes] = useState();
+  // const [filterCheck,setFilterCheck] = useState();
   
+  const url =`https://developers.zomato.com/api/v2.1/cuisines?city_id=${userData.entityId}`;
+  
+  const Preference = [
+    {id: 1, name:"Veg", value: "veg", isChecked: false},
+    {id: 2, name:"Non-Veg", value: "nonveg", isChecked: false},
+  ]
+  const sort = [
+    {id: 3, name:"Popularity - high to low", value: "Popularity", isChecked: false},
+    {id: 4, name:"Rating - high to low", value: "sort=rating&amp;order=desc", isChecked: false},
+    {id: 5, name:"Cost-high to low", value: "sort=cost&amp;order=desc", isChecked: false},
+    {id: 6, name:"Cost-low to high", value: "sort=cost&amp;order=asc", isChecked: false},
+  ]
+  
+  useEffect(() => {
+      fetchCuisines(url)
+  }, [])
+  
+
+  // const cuisines=[ userData.cuisines !==[] &&  userData.cuisines.filter(data => {
+  //   return ({id: data.cuisine.cuisine_id, name:data.cuisine.cuisine_name, value: data.cuisine.cuisine_id, isChecked: false})
+  // })]
+
   const filteredCuisines = userData.cuisines.filter(data => {
       return data.cuisine.cuisine_name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
     });
@@ -20,17 +39,31 @@ function FilterSideBar ({ userData, fetchCuisines }) {
     setSearch(e.target.value);
   };
 
-  const onSubmit = e =>[
+  const onFilterChange = e =>{
+    const name=e.target.name;
+    const id=e.target.value;
+    let updatedFilterbox=Object.assign({},filterCheckBoxes,{[name]:id});
+    setFilterCheckBoxes(updatedFilterbox);
+  }
 
-  ]
+  const handleAllChecked = () => {
+    // filterCheckBoxes.forEach(filter => filter.isChecked = false) 
+  }
+
+  const onSubmit = e =>{
+    onFilters(filterCheckBoxes);
+  }
 
   return (
   <Sidebar width={300} height={"100vh"}>
-    <form onSubmit={onSubmit}>
     <p>Preference</p>
       <ul>
-        <li><input type="checkbox" name="Veg" value="Veg"/>Veg</li>
-        <li><input type="checkbox" name="Non-Veg" value="Non-Veg"/>Non-Veg</li>
+      {Preference.map(data => 
+      <li key={data.id}>
+        <input type="checkbox" name={data.name} value={data.value} onChange={onFilterChange} checked={data.isChecked}/>
+        {data.name}
+        </li>
+      )}
       </ul>
       <p>Cuisines</p>
       <input className="filter"
@@ -42,24 +75,33 @@ function FilterSideBar ({ userData, fetchCuisines }) {
         placeholder="Search Cuisines"
       />
       <ul className="cuisines">
-      {userData.cuisines && filteredCuisines.map(data => <li key={data.cuisine.cuisine_id}><input type="checkbox" value={data.cuisine.cuisine_id} />{data.cuisine.cuisine_name}</li>)}
-      {/* {userData &&
-          userData.cuisines &&
-          userData.cuisines.map(data => <li key={data.cuisine.cuisine_id}><input type="checkbox" value={data.cuisine.cuisine_id} />{data.cuisine.cuisine_name}</li>)}
-       */}
+        {/* {cuisines.map(data => 
+        <li key={data.id}>
+          <input type="checkbox" name={data.name} value={data.value} onChange={onFilterChange} checked={data.isChecked}/>
+          {data.name}
+          </li>
+        )} */}
+
+        {userData.cuisines !==[] && filteredCuisines.map(data => 
+        <li key={data.cuisine.cuisine_id}>
+        <input type="checkbox" name={data.cuisine.cuisine_name} value={data.cuisine.cuisine_id} onChange={onFilterChange} />
+          {data.cuisine.cuisine_name}
+        </li>
+        )}
       </ul>
       <p>Sort By</p>
       <ul>
-        <li><input type="checkbox" name="Popularity - high tolow" value="Popularity - high tolow"/>Popularity - high tolow</li>
-        <li><input type="checkbox" name="Rating - high to low" value="Rating - high to low"/>Rating - high to low</li>
-        <li><input type="checkbox" name="Cost-hightolow" value="Cost-hightolow"/>Cost-hightolow</li>
-        <li><input type="checkbox" name="Cost-lowtohigh" value="Cost-lowtohigh"/>Cost-lowtohigh</li>
+        {sort.map(data => 
+        <li key={data.id}>
+          <input type="checkbox" name={data.name} value={data.value} onChange={onFilterChange} checked={data.isChecked}/>
+          {data.name}
+          </li>
+        )}
       </ul>
       <div className="filterBottom">
-        <button className="btn btn-primary">Clear</button>
-        <button className="btn btn-primary">Apply</button>
+        <button className="btn btn-primary" onClick={ handleAllChecked}>Clear</button>
+        <button className="btn btn-primary" onClick={onSubmit}>Apply</button>
       </div>
-      </form>
   </Sidebar>
   );
 };

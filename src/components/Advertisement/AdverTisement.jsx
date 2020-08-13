@@ -1,9 +1,9 @@
 import React from "react";
-import Style from "./Advertisement.module.scss";
+import "./Advertisement.scss";
 import Typical from "react-typical";
 function Advertisement() {
   return (
-    <div className={Style.advertisement}>
+    <div className="advertisement" >
       <Typical
         loop={Infinity}
         wrapper="h1"

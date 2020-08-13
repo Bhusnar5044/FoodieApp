@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import {connect} from 'react-redux';
-import { setChange } from '../../../actions/userActions';
+// import { setChange } from '../../../actions/userActions';
 
 class Locations extends React.Component {
   constructor(props) {
@@ -17,13 +17,13 @@ class Locations extends React.Component {
   }
   // const user={entity_id, entity_type, title}
   handleClick = () =>{
-    this.props.onhandleClick(true);
-    this.props.setChange(this.state);
+    // this.props.onhandleClick(true);
+    // this.props.setChange(this.state);
   }
   render() {
    return (
       <Card onClick={this.handleClick}>
-        <a><i class="fa fa-map-marker" aria-hidden="true"></i>
+        <a><i className="fa fa-map-marker" aria-hidden="true"></i>
         <b>{this.state.title}</b><br/>
         {this.state.title}, {this.state.country_name}
         </a>
@@ -34,15 +34,15 @@ class Locations extends React.Component {
 
 const mapStateToProps = (state) => {
   return{
-      user: state.user,
+      userData: state.user,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    setChange: (state) =>{
-      dispatch(setChange(state));
-    }
+    // setChange: (state) =>{
+    //   dispatch(setChange(state));
+    // }
   };
 };
 

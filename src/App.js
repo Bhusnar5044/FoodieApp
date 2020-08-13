@@ -8,13 +8,11 @@ import ScrollToTopButton from "./components/ScrollToTopButton/ScrollToTopButton"
 import SignIn_SignUp from "./Pages/Sign_In-Sign_UP-Page/SignIn_SignUp";
 import UserCart from "./Pages/UserCartPage/UserCart";
 import Page_Not_Found from "./Pages/PageNotFound/404_Page";
-// import RestaurantsPage from "./Pages/RestaurantsPage/Restaurants";
-
+import Restaurant from './components/RestuarantHome/Restaurant';
 class App extends Component {
   render(){
     return (
         <div className="App">
-          {/* <Home/> */}
           <ScrollToTopButton />
           <Navbar />
           <Switch>
@@ -22,7 +20,7 @@ class App extends Component {
             <Route path="/signIn" exact component={SignIn_SignUp} />
             <Route path="/userCart" exact component={UserCart} />
             <Route path="/userQueryRestaurants" exact component={AllRestaurants} />
-
+            <Route path="/RestaurantHome" exact component={Restaurant} />
             <Route path="*" component={Page_Not_Found} />
           </Switch>
           </div>

@@ -1,5 +1,6 @@
 import "./UserSearchInputBar.scss";
 import PlacesAutocomplete from "react-places-autocomplete";
+import Locations from './Locations';
 import React, { useState,useEffect } from "react";
 // import userQuery from "../../Redux/Actions/ActionsCreator/UserSearchActionCreators";
 import { connect } from "react-redux";
@@ -7,32 +8,49 @@ import {useHistory} from "react-router";
 import { withRouter } from "react-router-dom";
 import { fetchPlaces } from '../../redux'
 
-function UserSearchInputBar (props) {
+function UserSearchInputBar ({userData,fetchPlaces,type,placeholder,name,onChangeHandle}) {
   const [query, setQuery] = useState("");
   const [click,setClick] = useState(false);
+  const [locations,setLocations] = useState([]);
   
   const history = useHistory();
-  const url = `https://developers.zomato.com/api/v2.1/locations?query=${query}`;
+  // const url = `https://developers.zomato.com/api/v2.1/locations?query=${query}`;
   
   // useEffect(() => {
-  //   if(click){
-  //     props.fetchPlaces(url);
-  //   }
+  //   setTimeout(() => {
+      
+  //   }, 2000);
   // }, [])
 
   const onChange = e => {
     setQuery(e.target.value);
+    onChangeHandle(query);
   };
 
   const onSubmit = e => {
     e.preventDefault();
-    // setClick(true)
-    props.fetchPlaces(url);
-    setTimeout(() => {
-      history.push("/userQueryRestaurants");
-    }, 1000); 
+    setQuery(e.target.value);
+    onChangeHandle(query);
+    // fetchPlaces(url);
+    // console.log(userData.places);
+    // setdata();
+    // setLocations(props.userData.places);
+    // console.log("places:",locations);
+  }
+
+    // async function setdata(){
+    //   await fetchPlaces(url);
+    //   // setLocations(userData.places);
+    //   // console.log("places:",locations);
+    // }
+    
+    // setTimeout(() => {
+    //   setLocations(props.userData.places);
+    //   console.log("places:",locations);
+    //   // history.push("/userQueryRestaurants");
+    // }, 3000);
     // history.push("/userQueryRestaurants");
-  };
+  // };
 
 
     return (
@@ -40,10 +58,10 @@ function UserSearchInputBar (props) {
         <form className="UserResponse" onSubmit={onSubmit} >
           <input
             onChange={onChange}
-            type={props.type}
-            placeholder={props.placeholder}
+            type={type}
+            placeholder={placeholder}
             required
-            name={props.name}
+            name={name}
           />
           <button type="sumbit">
             <i
@@ -52,6 +70,10 @@ function UserSearchInputBar (props) {
             ></i>
           </button>
         </form>
+        {/* { userData.places!== [] &&
+        userData.places.map(location =>
+          <Locations key={location.entity_Id} location={location} />)
+        } */}
       </div>
     );
   }

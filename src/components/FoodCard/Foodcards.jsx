@@ -1,10 +1,10 @@
 import React, { useState,useEffect } from "react";
 import './foodCard.scss'
-const FoodCard = ({ recipe }) => {
+const FoodCard = ({ recipe,handleClick }) => {
   const [textShow, setTextShow] = useState(false);
   const [divshow, setdivshow] = useState("nodivshow");
-  const { name, featured_image, timings, location, user_rating,average_cost_for_two } = recipe.restaurant;
-
+  const { name, featured_image, timings, location, user_rating,average_cost_for_two,R } = recipe.restaurant;
+ 
   useEffect(()=>{
     if (textShow) {
       setdivshow("divshow");
@@ -14,9 +14,14 @@ const FoodCard = ({ recipe }) => {
     }
   });
 
+  const onhandleClick = () =>{
+    console.log("res_id: ",R.res_id);
+    handleClick(R.res_id);
+  }
+
   return (
-    <div className="foodcard" id={recipe.key} onMouseEnter={() => setTextShow(true)} onMouseLeave={() => setTextShow(false)}>
-        <a href="/"><img src={featured_image} alt={name} />
+    <div className="foodcard" id={recipe.key} onMouseEnter={() => setTextShow(true)} onMouseLeave={() => setTextShow(false)} onClick={onhandleClick} >
+        <a><img src={featured_image} alt={name} />
         <div className="container1">
             <h3><b>{name}</b></h3> 
             <h4>{location.address}</h4>

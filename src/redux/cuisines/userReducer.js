@@ -2,6 +2,8 @@ import {
   FETCH_REQUEST,
   FETCH_CUISINES_SUCCESS,
   FETCH_RESTAURANTS_SUCCESS,
+  FETCH_RESTUARANT_DATA_SUCCESS,
+  FETCH_DAILY_MENU_SUCCESS,
   FETCH_FAILURE,
   SET_SEARCH,
   SET_CHANGE
@@ -17,6 +19,8 @@ const initialState = {
   cuisines: [],
   restaurants:[],
   places:[],
+  restaurantData:[],
+  dailyMenu:[],
   error: ''
 }
 
@@ -31,10 +35,10 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         searchAction:true,
-        entityId:action.payload.entity_id,
-        entityType:action.payload.entity_type,
-        locationTitle:action.payload.title,
-        country:action.payload.country_name,
+        // entityId:action.payload.entity_id,
+        // entityType:action.payload.entity_type,
+        // locationTitle:action.payload.title,
+        // country:action.payload.country_name,
         places:action.payload
       }
     case SET_CHANGE:
@@ -63,6 +67,20 @@ const reducer = (state = initialState, action) => {
         restaurants: action.payload,
         error: ''
       }
+    case FETCH_RESTUARANT_DATA_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        restaurantData: action.payload,
+        error: ''
+      }
+    case FETCH_DAILY_MENU_SUCCESS:
+      return {
+      ...state,
+      loading: false,
+      dailyMenu: action.payload,
+      error: ''
+    }
     case FETCH_FAILURE:
       return {
         ...state,
