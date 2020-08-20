@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function Page_Not_Found() {
   return (
     <div className={Style.main_container}>
-      <div className={Style.pnf}>
+      <div className={Style.PageNotFound}>
         <h1 style={{ backgroundImage: `url(${PIC})` }}>404</h1>
         <h2>The Page you are requesting doesn't exist.</h2>
       </div>

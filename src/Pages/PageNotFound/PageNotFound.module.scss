@@ -13,8 +13,9 @@
   align-items: center;
 }
 .pnf h1 {
-  font-size: 13rem;
-  -webkit-background-clip: text;
+  font-size: 14rem;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
   color: transparent;
   background-position: center;
   background-size: 100%;

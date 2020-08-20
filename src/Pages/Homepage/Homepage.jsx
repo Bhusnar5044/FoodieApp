@@ -1,48 +1,51 @@
-import React, { useState } from "react";
-import "./Homepage.scss";
+import React, { Component,useState,useEffect } from "react";
+import Style from "./Homepage.module.css";
 import Pic from "../../Assets/Images/food4.jpg";
-import Card from "../../components/Card/Card";
-import Locations from '../../components/LocationSearch/Locations';
-import UserSearchInputBar from "../../components/UserSearchInputBar/UserSearchInputBar";
-import Advertisement from "../../components/Advertisement/AdverTisement";
-import Footer from "../../components/Footer/Footer";
-import { fetchPlaces } from '../../redux';
+import Card from "../../Component/Card/Card";
+import Locations from "../../Component/LocationSearch/Locations";
+import UserSearchInputBar from "../../Component/UserSearchInputBar/UserSearchInputBar";
+import Advertisement from "../../Component/Advertisement/AdverTisement";
+import Footer from "../../Component/Footer/Footer";
+import { fetchPlaces } from "../../Redux";
 import { connect } from "react-redux";
-import {useHistory} from "react-router";
+import { useHistory } from "react-router";
 import { withRouter } from "react-router-dom";
 
-const Homepage = ({userData,fetchPlaces}) =>{
+const Homepage = ({ userData, fetchPlaces }) => {
   const [query, setQuery] = useState("");
+  // const[locations, setLocations] = useState(userData.places);
 
-  const getSearch = (query) =>{
-    setQuery(query);
+  const getSearch = q => {
+    setQuery(q);
     const url = `https://developers.zomato.com/api/v2.1/locations?query=${query}`;
     fetchPlaces(url);
   }
 
+  // useEffect(() => {
+  //   setLocations(userData.places);
+  // }, []);
+
   return (
     <>
-      <div
-        className="maincontainer"
-        style={{ backgroundImage: `url(${Pic})` }}
-      >
+      <div className={Style.maincontainer} style={{ backgroundImage: `url(${Pic})` }}>
         <br />
         <br />
         <br />
-
+        
         <Advertisement />
-        <div className="InputField">
+        <div className={Style.InputField}>
           <UserSearchInputBar
             type={"text"}
             placeholder={"Search Restaurants by location..."}
             name="locationSearch"
             onChangeHandle={getSearch}
           />
-          <div className="places">
-          { userData.places!== [] &&
-            userData.places.map(location =>
-            <Locations key={location.entity_Id} location={location} />)
-          }
+          <div className={Style.places} >
+          <Locations />
+            {/* {userData.places !== [] &&
+              userData.places.map(location => (
+                <Locations key={location.entity_Id} location={location} />
+              ))} */}
           </div>
 
           <h3 style={{ textAlign: "center", marginTop: "60px" }}>
@@ -60,23 +63,20 @@ const Homepage = ({userData,fetchPlaces}) =>{
       <Footer />
     </>
   );
-}
+};
 
 const mapStateToProps = state => {
   return {
-    userData: state.user
-  }
-}
-
-const mapDispatchToprops = dispatch => {
-return {
-  fetchPlaces: (url) =>
-  dispatch(fetchPlaces(url)),
-  // setChange: (url) =>
-  // setChange(setChange(url)),
+    userData: state.user,
   };
 };
 
-export default withRouter(
-connect(mapStateToProps, mapDispatchToprops)(Homepage)
-);
+const mapDispatchToprops = dispatch => {
+  return {
+    fetchPlaces: url => dispatch(fetchPlaces(url)),
+    // setChange: (url) =>
+    // setChange(setChange(url)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToprops)(Homepage);
