@@ -22,7 +22,7 @@ function RestaurantHome({ userData, add_Item }) {
     user_rating,
     cuisines,
     all_reviews_count,
-  } = userData.restaurantData;
+  } = userData.restaurantData && userData.restaurantData;
   const address = location ? location.address : "";
   const aggregate_rating = user_rating ? user_rating.aggregate_rating : "";
 

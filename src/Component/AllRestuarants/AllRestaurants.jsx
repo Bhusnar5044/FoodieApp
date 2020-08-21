@@ -37,7 +37,7 @@ function AllRestaurants({
   useEffect(() => {
     fetchRestaurants(url);
     setXPosition(0);
-  }, []);
+  },[]);
 
   const other = [
     "Veg",
@@ -120,7 +120,7 @@ function AllRestaurants({
           onClick={() => toggleMenu()}
           className={Style.toggleMenu}
         >
-          <i class="fa fa-sliders" aria-hidden="true"></i>
+          <i className="fa fa-sliders" aria-hidden="true"></i>
         </button>
         <div className={Style.span1}>
           <button onClick={handleHeaderFilter}>Relevance</button>

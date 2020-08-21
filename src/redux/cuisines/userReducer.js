@@ -34,20 +34,25 @@ const reducer = (state = initialState, action) => {
       }
       break;
     case SET_SEARCH:
+      console.log(action.payload[0]);
       state = {
         ...state,
         searchAction:true,
-        places:action.payload
+        places:action.payload,
+        entityId:action.payload[0].entity_id,
+        entityType:action.payload[0].entity_type,
+        locationTitle:action.payload[0].title,
+        country:action.payload[0].country_name,
       }
       break;
     case SET_CHANGE:
       state = {
         ...state,
         // searchAction:true,
-        entityId:action.payload.entity_id,
-        entityType:action.payload.entity_type,
-        locationTitle:action.payload.title,
-        country:action.payload.country_name,
+        // entityId:action.payload.entity_id,
+        // entityType:action.payload.entity_type,
+        // locationTitle:action.payload.title,
+        // country:action.payload.country_name,
         // places:action.payload
       }
       break;

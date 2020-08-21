@@ -38,10 +38,10 @@ const Homepage = ({ userData, fetchPlaces }) => {
             type={"text"}
             placeholder={"Search Restaurants by location..."}
             name="locationSearch"
-            onChangeHandle={getSearch}
+            // onChangeHandle={getSearch}
           />
           <div className={Style.places} >
-          <Locations />
+          {/* <Locations /> */}
             {/* {userData.places !== [] &&
               userData.places.map(location => (
                 <Locations key={location.entity_Id} location={location} />
