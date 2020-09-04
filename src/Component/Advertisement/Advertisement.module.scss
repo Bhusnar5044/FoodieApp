@@ -3,12 +3,14 @@
   height: 50px !important;
   text-align: center;
   margin-top: 40px;
-  color: white;
-  --slider-transition-duration: 1500ms !important;
+  color: black;
+  font-weight: 500;
+  --slider-transition-duration: 1700ms !important;
 }
-.advertisement div{
+.advertisement div {
   background-color: transparent;
   font-size: 2rem;
+  z-index: 0;
 }
 
 // .aws-btn {
@@ -28,12 +30,12 @@
 //   --loader-bar-height: 6px;
 //   }
 
-@media (max-width:600px){
-  .advertisement{
+@media (max-width: 600px) {
+  .advertisement {
     color: white;
     height: 30px !important;
   }
-  .advertisement div{
+  .advertisement div {
     font-size: 1.2rem;
   }
 }

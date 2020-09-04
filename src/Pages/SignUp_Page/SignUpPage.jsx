@@ -41,7 +41,7 @@ function SignUpPage(props) {
       setEmail("");
       setConfirmPassword("");
     } catch (err) {
-      console.log("something went wrong", err.message);
+      alert("something went wrong" + " " +err.message);
     }
   };
 

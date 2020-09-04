@@ -74,7 +74,7 @@ function UserDetails({
     <div className={Style.main_container}>
       <div className={Style.sub_container}>
         <div className={Style.appeal}>
-          <h3>Please Provide Address Details to Proceed</h3>
+          <h4>Please Provide Address Details to Proceed</h4>
         </div>
         <form onSubmit={handleUserResponse}>
           <input

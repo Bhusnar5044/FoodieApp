@@ -7,7 +7,7 @@
   padding: 20px;
   border: 1px solid gray;
   background-color: whitesmoke;
-  top: 70px;
+  top: 68px;
   right: 10px;
   z-index: 5;
 }
@@ -16,6 +16,19 @@
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
+}
+.CartItems::-webkit-scrollbar {
+  width: 10px;
+}
+.CartItems::-webkit-scrollbar-track {
+  border: 5px solid #292943 !important;
+  box-shadow: inset0 0 2.5px 2px rgba(0, 0, 0, 0.5);
+}
+.CartItems::-webkit-scrollbar-thumb {
+  background-color: lightblue;
+}
+.CartItems::-webkit-scrollbar-thumb:hover {
+  background: rgb(0, 98, 255);
 }
 .Cartbutton {
   margin-top: auto;

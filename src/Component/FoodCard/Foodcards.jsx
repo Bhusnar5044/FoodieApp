@@ -43,15 +43,15 @@ const FoodCard = ({ recipe, handleClick }) => {
           <h3 className="restaurantName">
             <b>{name}</b>
           </h3>
-          <h3>{location.address}</h3>
-          <div>
+          <h4 className="address">{location.address.slice(0, 90) + "..."}</h4>
+          <div style={{ marginTop: "10px" }}>
             <span className="rating" style={{ backgroundColor: "gold" }}>
               <i className="fa fa-star" aria-hidden="true"></i>{" "}
               <b>{user_rating.aggregate_rating}</b>
             </span>
             .
             <span>
-              <b>{timings}</b>
+              <b>{timings.slice(0, 20)}</b>
             </span>
             .
             <span>

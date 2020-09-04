@@ -72,7 +72,7 @@ function CheckOutItems({ item, clear_Item, add_Item, remove_item }) {
           ></i>
         </div>
       </span>
-      <span className={Style.price}>{item.price}</span>
+      <span className={Style.price}>{item.price * item.quantity}</span>
       <div className={Style.remove}>
         <i
           className="far fa-trash-alt"

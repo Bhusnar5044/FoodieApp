@@ -1,5 +1,5 @@
 import React, { Component,useState,useEffect } from "react";
-import Style from "./Homepage.module.css";
+import Style from "./Homepage.module.scss";
 import Pic from "../../Assets/Images/food4.jpg";
 import Card from "../../Component/Card/Card";
 import Locations from "../../Component/LocationSearch/Locations";

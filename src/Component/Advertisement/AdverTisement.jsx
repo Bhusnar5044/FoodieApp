@@ -2,12 +2,12 @@ import React from "react";
 import Style from "./Advertisement.module.scss";
 // import Typical from "react-typical";
 
-import AwesomeSlider from 'react-awesome-slider';
-import 'react-awesome-slider/dist/styles.css';
-import 'react-awesome-slider/dist/captioned.css';
-import withAutoplay from 'react-awesome-slider/dist/autoplay';
-import CoreStyles from 'react-awesome-slider/src/core/styles.scss';
-import AnimationStyles from 'react-awesome-slider/src/styled/fold-out-animation/fold-out-animation.scss';
+import AwesomeSlider from "react-awesome-slider";
+import "react-awesome-slider/dist/styles.css";
+import "react-awesome-slider/dist/captioned.css";
+import withAutoplay from "react-awesome-slider/dist/autoplay";
+import CoreStyles from "react-awesome-slider/src/core/styles.scss";
+import AnimationStyles from "react-awesome-slider/src/styled/fold-out-animation/fold-out-animation.scss";
 
 function Advertisement() {
   const AutoplaySlider = withAutoplay(AwesomeSlider);
@@ -43,7 +43,7 @@ function Advertisement() {
         // transitionDelay={8000}
         play={true}
         cancelOnInteraction={false} // should stop playing on user interaction
-        interval={2000}
+        interval={2500}
         buttons={false}
         bullets={false}
         className={Style.advertisement}

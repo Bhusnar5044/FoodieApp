@@ -16,7 +16,7 @@ import AllRestaurants from "./Component/AllRestuarants/AllRestaurants";
 import setCurrentUser from "./Redux/Actions/ActionsCreator/userAuthActionCreators";
 import { auth, createUserProfileDocument } from "./Firebase/Firebase.utils";
 
-function App({ setCurrentUser, currentUser }) {
+function App({ setCurrentUser, currentUser, CartItems }) {
   let unSunscribeFromAuth = null;
   useEffect(() => {
     //Our application can now listen to authentication state changes
@@ -40,7 +40,6 @@ function App({ setCurrentUser, currentUser }) {
     };
   }, []);
 
-
   return (
     <div className="App">
       <ScrollToTopButton />
@@ -59,7 +58,17 @@ function App({ setCurrentUser, currentUser }) {
         <Route
           path="/signUp"
           exact
-          render={() => (currentUser ? <Redirect to="/" /> : <SignUpPage />)}
+          render={() =>
+            currentUser ? (
+              CartItems.length > 0 ? (
+                <Redirect to="/userCart" />
+              ) : (
+                <Redirect to="/" />
+              )
+            ) : (
+              <SignUpPage />
+            )
+          }
         />
 
         <Route path="*" component={Page_Not_Found} />
@@ -75,6 +84,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     currentUser: state.CurrentUserReducer.currentUser,
+    CartItems: state.CartDropDownReducer.CartItems,
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(App);

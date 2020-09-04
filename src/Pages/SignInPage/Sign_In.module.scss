@@ -3,7 +3,7 @@
   height: 800px;
   // margin-top: 110px;
   padding-top: 70px;
-  background: linear-gradient(168deg,white 50%, rgb(230, 230, 224) 50%);
+  background: linear-gradient(168deg, white 50%, rgb(230, 230, 224) 50%);
 }
 .sub_container {
   width: 52%;
@@ -172,9 +172,8 @@ form {
   }
 }
 
-@media (max-width:990px){
+@media (max-width: 990px) {
   .branding {
-   
     display: block;
     height: 540px;
   }
@@ -197,7 +196,7 @@ form {
   }
 }
 
-@media (max-width:800px){
+@media (max-width: 800px) {
   .branding {
     display: none;
   }
@@ -208,8 +207,8 @@ form {
     // margin-top: 110px;
     padding-top: 70px;
     background-color: white;
- }
-  
+  }
+
   .sub_container {
     width: 70%;
     height: 540px;
@@ -226,17 +225,16 @@ form {
     height: 540px;
     border: 1px solid grey;
   }
-    .button1 {
-      width: 310px;
-      height: 40px;
-      cursor: pointer;
-      font-size: 15px;
-      letter-spacing: 1px;
-    }
-  
+  .button1 {
+    width: 310px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
 }
 
-@media (max-width:600px){
+@media (max-width: 600px) {
   .branding {
     // opacity: 0;
     // visibility: hidden;
@@ -254,7 +252,7 @@ form {
     // margin-left: 90px;
     background-color: white;
   }
-  
+
   .signInForm {
     width: 100%;
     height: 540px;

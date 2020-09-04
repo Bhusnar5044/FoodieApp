@@ -20,7 +20,7 @@ function StripeButton({
 
   const onPaymentSuccess = token => {
     console.log(token);
-    alert("Payment Succesfull");
+swal("Hurray !", "Your Order Has been Placed!", "success");
     getCardDetails(token);
   };
 
